@@ -32,6 +32,10 @@
         .tags li { font-size: 0.8em; padding: 2px 9px; border: 1px solid #3a3a3a; border-radius: 999px; color: #c8c8c8; }
         .muted { color: #9a9a9a; font-size: 0.9em; }
         .skills p { margin: 6px 0; }
+        .quote { margin: 28px 0 0; padding: 4px 0 4px 16px; border-left: 3px solid #4da6ff; }
+        .quote-label { font-size: 0.75em; letter-spacing: 0.08em; text-transform: uppercase; color: #8a8a8a; margin: 0 0 4px; }
+        .quote blockquote { margin: 0; font-style: italic; color: #e8e8e8; }
+        .quote figcaption { margin-top: 4px; font-size: 0.9em; color: #9a9a9a; }
     </style>
 </head>
 <body>
@@ -43,6 +47,12 @@
         <a href="https://github.com/richardgage">GitHub</a> |
         <a href="https://linkedin.com/in/richard-gage-a38009178">LinkedIn</a>
     </div>
+
+    <figure class="quote" aria-label="Quote of the day">
+        <p class="quote-label">Quote of the day</p>
+        <blockquote id="quote-text">We are what we repeatedly do.</blockquote>
+        <figcaption id="quote-author">&mdash; Will Durant, summarizing Aristotle</figcaption>
+    </figure>
 
     <h2>About</h2>
     <p>
@@ -111,5 +121,42 @@
         <p><strong>Data:</strong> PostgreSQL, Supabase, data analysis</p>
         <p><strong>Tools:</strong> Git and GitHub, Railway, Vercel, Twilio, Vapi, LLM prompt engineering and AI-assisted development</p>
     </div>
+
+    <script>
+        // ===== Quote of the day =====
+        // The quotes live in quotes.txt (one per line: quote | author).
+        // Each day the page shows the next quote in the list. If the file can't be
+        // loaded, the default quote written in the page above stays.
+        (async function showQuoteOfTheDay() {
+            try {
+                const res = await fetch("quotes.txt", { cache: "no-cache" });
+                if (!res.ok) return;
+                const quotes = (await res.text())
+                    .split("\n")
+                    .map((line) => line.trim())
+                    .filter((line) => line && !line.startsWith("#"))   // skip blank lines and # notes
+                    .map((line) => {
+                        const bar = line.lastIndexOf("|");
+                        return bar === -1
+                            ? { text: line, author: "" }
+                            : { text: line.slice(0, bar).trim(), author: line.slice(bar + 1).trim() };
+                    })
+                    .filter((q) => q.text);
+                if (!quotes.length) return;
+
+                const now = new Date();
+                // Days since 1 Jan 1970 in the visitor's local time, so the quote changes at their midnight.
+                const day = Math.floor((now - now.getTimezoneOffset() * 60000) / 86400000);
+                const quote = quotes[day % quotes.length];
+
+                document.getElementById("quote-text").textContent = quote.text;
+                const author = document.getElementById("quote-author");
+                author.textContent = quote.author ? "\u2014 " + quote.author : "";
+                author.hidden = !quote.author;
+            } catch (e) {
+                // Opened as a local file, or offline: keep the default quote.
+            }
+        })();
+    </script>
 </body>
 </html>
