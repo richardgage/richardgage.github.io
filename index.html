@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Richard Gage - Developer & Problem Solver</title>
+    <title>Richard Gage - Software Developer</title>
+    <meta name="description" content="Richard Gage, software developer in Victoria, BC. Builds full-stack web apps and AI voice agents.">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <style>
         body {
@@ -17,50 +18,98 @@
         }
         h1 { margin-bottom: 5px; }
         h2 { margin-top: 40px; border-bottom: 2px solid #333; padding-bottom: 5px; }
+        h3 { margin-bottom: 4px; }
         a { color: #4da6ff; text-decoration: none; }
         a:hover { text-decoration: underline; }
+        .tagline { margin-top: 0; color: #b0b0b0; }
         .contact { margin: 20px 0; }
-        .project { margin: 20px 0; }
+        .project { margin: 28px 0; }
+        .project p { margin: 6px 0; }
+        .project ul { margin: 6px 0; padding-left: 20px; }
+        .project li { margin: 3px 0; }
+        .status { font-size: 0.85em; color: #7fd18b; }
+        .project .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; padding: 0; list-style: none; }
+        .tags li { font-size: 0.8em; padding: 2px 9px; border: 1px solid #3a3a3a; border-radius: 999px; color: #c8c8c8; }
+        .muted { color: #9a9a9a; font-size: 0.9em; }
+        .skills p { margin: 6px 0; }
     </style>
 </head>
 <body>
     <h1>Richard Gage</h1>
-    <p>Developer | Data Analyst | Problem Solver</p>
-    
+    <p class="tagline">Software Developer &middot; Victoria, BC</p>
+
     <div class="contact">
-        <a href="mailto:richard1gage@gmail.com">Email</a> | 
-        <a href="https://github.com/richardgage">GitHub</a> | 
+        <a href="mailto:richard1gage@gmail.com">Email</a> |
+        <a href="https://github.com/richardgage">GitHub</a> |
         <a href="https://linkedin.com/in/richard-gage-a38009178">LinkedIn</a>
     </div>
 
     <h2>About</h2>
     <p>
-        Hello! I am a Computer Science graduate from the University of Victoria with a background in Philosophy and Math. 
-        I am passionate about problem solving and learning how to utilize data science and AI to improve our lives. I have experience in software development, data analysis, and research.
+        I'm a Computer Science graduate from the University of Victoria, with an earlier degree in Philosophy and Math.
+        I like building software that solves real problems for real people, then watching how it gets used and making it better.
+        Most recently, I built an AI phone receptionist that answers a health clinic's after-hours calls.
+    </p>
+
     <h2>Projects</h2>
-    
+
+    <div class="project">
+        <h3>AI Voice Receptionist</h3>
+        <p class="status">&#9679; Live in production at a multi-practitioner health clinic in Victoria</p>
+        <p>
+            An AI phone agent that answers every call when the clinic is closed. It takes booking, reschedule,
+            cancellation and confirmation requests, answers common questions (location, prices, insurance), and
+            texts callers a confirmation. Requests land on a web dashboard where the front desk works through them each morning.
+        </p>
+        <ul>
+            <li>Node.js / Express API that the voice agent calls as tools, with validation, shared-secret auth and graceful fallbacks</li>
+            <li>Business rules in code rather than the model: opening hours, holidays and time zones are calculated server-side</li>
+            <li>Merges follow-up details from the same call into one request instead of creating duplicates</li>
+            <li>Front-desk dashboard with login, urgent-first sorting, search, transcripts and per-request outcomes</li>
+            <li>Monitoring that texts me if a call goes silent or a request fails to save</li>
+        </ul>
+        <ul class="tags">
+            <li>Node.js</li><li>Express</li><li>PostgreSQL</li><li>Supabase</li><li>Twilio</li><li>Vapi</li><li>LLM tool calling</li><li>Railway</li>
+        </ul>
+        <p class="muted">Private repository (it handles clinic data). Happy to walk through the code or give a live demo.</p>
+    </div>
+
     <div class="project">
         <h3>SetsAndReps Gym Training Tracker</h3>
-        <p>A full-stack web application for comprehensive strength training tracking with detailed exercise, set, and rep logging. Built with Next.js, React, TypeScript, and PostgreSQL.</p>
-        <p><a href="https://setsandreps.vercel.app"> Go To The Site →</a></p>
+        <p>
+            A full-stack web app for tracking strength training: live workout logging (exercises, sets, weight and reps),
+            a rest timer, workout history, analytics charts, and a social feed for training with friends.
+        </p>
+        <ul>
+            <li>Normalized PostgreSQL schema (users, sessions, exercises, sets) with foreign keys, cascading deletes and unique constraints</li>
+            <li>Dashboard analytics built on aggregate SQL: joins, GROUP BY and conditional sums</li>
+            <li>Authentication with NextAuth, bcrypt-hashed passwords and per-user data isolation</li>
+        </ul>
+        <ul class="tags">
+            <li>Next.js</li><li>React</li><li>TypeScript</li><li>PostgreSQL</li><li>Recharts</li><li>Vercel</li>
+        </ul>
+        <p><a href="https://setsandreps.vercel.app">Go to the site &rarr;</a> &nbsp;|&nbsp; <a href="https://github.com/richardgage/fitness-dashboard">Code &rarr;</a></p>
     </div>
 
     <div class="project">
         <h3>GitHub Repository Analysis</h3>
         <p>
-            Led research analyzing 174 GitHub repositories to identify patterns in software engineering practices. 
-            Used Python, data mining techniques, and statistical analysis to extract insights.
+            Led research analyzing 174 GitHub repositories to identify patterns in software engineering practices,
+            using Python, data mining techniques and statistical analysis.
         </p>
-        <p><a href="https://github.com/richardgage/github-repo-analysis/blob/main/paper/FinalReport.pdf">Read more →</a></p>
+        <ul class="tags">
+            <li>Python</li><li>Data mining</li><li>Statistics</li>
+        </ul>
+        <p><a href="https://github.com/richardgage/github-repo-analysis/blob/main/paper/FinalReport.pdf">Read the report &rarr;</a></p>
     </div>
 
     <h2>Background</h2>
-    <p>
-        <strong>Education:</strong> BSc Computer Science (2025), BA Philosophy & Mathematics (2019), University of Victoria
-    </p>
-    <p>
-        <strong>Technical Skills:</strong> Python, Java, C, SQL, React, Data Analysis, Git, AI Tools Usage, Software Development, Research Methodology
-    </p>
-
+    <div class="skills">
+        <p><strong>Education:</strong> BSc Computer Science (2025), BA Philosophy &amp; Mathematics (2019), University of Victoria</p>
+        <p><strong>Languages:</strong> JavaScript, TypeScript, Java, Python, SQL, C</p>
+        <p><strong>Web &amp; back end:</strong> Node.js, Express, React, Next.js, REST APIs and webhooks</p>
+        <p><strong>Data:</strong> PostgreSQL, Supabase, data analysis</p>
+        <p><strong>Tools:</strong> Git and GitHub, Railway, Vercel, Twilio, Vapi, LLM prompt engineering and AI-assisted development</p>
+    </div>
 </body>
 </html>
