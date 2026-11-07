@@ -3,8 +3,9 @@
 # Lines starting with # are notes and are ignored. Blank lines are fine.
 # The site shows one quote per day, going through this list in order.
 
-We are what we repeatedly do. | Will Durant, summarizing Aristotle
 It is not that we have a short time to live, but that we waste a lot of it. | Seneca
 The impediment to action advances action. What stands in the way becomes the way. | Marcus Aurelius
 Simplicity is prerequisite for reliability. | Edsger W. Dijkstra
 The unexamined life is not worth living. | Socrates
+Happiness is reality minus expectations | Tim Urban
+As your island of knowledge grows, so does your shoreline of ignorance | John Wheel
