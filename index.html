@@ -129,7 +129,7 @@
         // loaded, the default quote written in the page above stays.
         (async function showQuoteOfTheDay() {
             try {
-                const res = await fetch("quotes.txt", { cache: "no-cache" });
+                const res = await fetch("Quotes.txt", { cache: "no-cache" });
                 if (!res.ok) return;
                 const quotes = (await res.text())
                     .split("\n")
